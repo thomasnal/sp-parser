@@ -13,6 +13,26 @@ The log file contains one visit information on each line.  Each line contains pa
 Turns text records into a data structure used by report classes.
 
 
+### TotalVisitsReport
+
+It prints each path and number of visits to stdout in descending order.  It counts every visit made by an IP address to any path.  The count includes repeated visits.
+
+Example,
+```
+/help_page/1 80 visits
+```
+
+
+### UniqueVistsReport
+
+It prints each path and number of unique visits to stdout in descending order.  It counts only unique visits that is each IP address visiting a path is counted only once.
+
+Example,
+```
+/help_page/1 23 unique views
+```
+
+
 ### CanPrint
 
 Common print functionality used by the report classes.
