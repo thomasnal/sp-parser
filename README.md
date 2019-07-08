@@ -5,7 +5,32 @@ The `SP Ruby Test` app prints report of different visit statistics.  The app rea
 The log file contains one visit information on each line.  Each line contains path and IP address separated by a white space.  The app expects the format is correct.
 
 
+# Usage
+Provide a log file name at command line and run the parser by,
+```
+./parser webserver.log
+```
+
+
+# Test
+
+To run complete test suite,
+```
+ruby test.rb
+```
+
+
 # Design
+
+The parser app is available in file `parser.rb`.  The app comprises of following classes,
+
+* `visits_log`
+* `total_visits_report`
+* `unique_visits_report`
+
+and module,
+
+* `can_print`
 
 
 ### VisitsLog
