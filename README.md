@@ -1,4 +1,4 @@
-# SP Ruby Test
+# SP Parser
 
 The `SP Ruby Test` app prints report of different visit statistics.  The app reads source of the information from a log file provided at command line.
 
