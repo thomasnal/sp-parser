@@ -55,12 +55,12 @@ Example,
 ```
 
 
-### UniqueVists
+### UniqueVisits
 
 Counts unique visits, each IP address visiting a path is counted only once.  It calls VisitsLog and processes log file one line at a time.
 
 
-### UniqueVistsReport
+### UniqueVisitsReport
 
 It prints each path and number of unique visits to stdout in descending order.
 
