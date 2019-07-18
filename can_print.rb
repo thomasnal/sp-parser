@@ -4,8 +4,8 @@
 module CanPrint
 
   def print
-    visits_counts.each do |path, count|
-      puts "#{path} #{count} #{@visit_string}"
+    items.each do |path, count|
+      puts "#{path} #{count} #{@line_suffix}"
     end
   end
 

@@ -3,25 +3,25 @@
 #
 class VisitsLog
 
-  def initialize file_name=nil
+  def initialize file_name
     raise ArgumentError.new('Missing filename') if file_name.nil?
+
     @file_name = file_name
   end
 
 
   def items
-    @visits ||= read_visits
+    File.foreach @file_name
   end
 
 
-  private
-
-
-  def read_visits
-    File.foreach(@file_name).map do |line|
+  def each_with_object object
+    items.each do |line|
       line_items = line.split ' '
-      { path: line_items[0], ip: line_items[1] }
+      yield line_items[0], line_items[1], object
     end
+
+    object
   end
 
 end

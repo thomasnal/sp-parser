@@ -1,45 +1,30 @@
+require './total_visits'
 require './total_visits_report'
+require './visits_log'
 require "minitest/autorun"
 
 
 class TotalVisitsReportTest < Minitest::Test
   
-  def test_it_prints_empty
-    report = TotalVisitsReport.new []
-
-    assert_output(/^$/) { report.print }
-  end
-
-
   def test_it_prints_totals
-    visits = [
-      { path: '/1', ip: '1' },
-      { path: '/1', ip: '1' },
-    ]
+    visits_log = VisitsLog.new 'test_fixture1.log'
+    totals = TotalVisits.new visits_log
 
-    report = TotalVisitsReport.new visits
+    report = TotalVisitsReport.new totals
 
     out, err = capture_io { report.print }
-    assert_match /\/1 2 visits/, out
+    assert_match /\/path1 2 visits/, out
   end
 
 
-  def test_it_prints_sorted_paths
-    visits = [
-      { path: '/1', ip: '1' },
-      { path: '/2', ip: '1' },
-      { path: '/2', ip: '1' },
-      { path: '/3', ip: '1' }
-    ]
+  def test_it_prints_ordered_desc
+    visits_log = VisitsLog.new 'test_fixture2.log'
+    totals = TotalVisits.new visits_log
 
-    report = TotalVisitsReport.new visits
+    report = TotalVisitsReport.new totals
 
     out, err = capture_io { report.print }
-    assert_match /\/2.+\/1.+\/3/m, out
-
-    assert_match /\/1 1 visits/, out
-    assert_match /\/2 2 visits/, out
-    assert_match /\/3 1 visits/, out
+    assert_match /\/path2.+\/path1/m, out
   end
 
 end
