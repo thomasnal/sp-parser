@@ -25,7 +25,9 @@ ruby test.rb
 The parser app is available in file `parser.rb`.  The app functionality is provided by following classes,
 
 * `visits_log`
+* `total_visits`
 * `total_visits_report`
+* `unique_visits`
 * `unique_visits_report`
 
 and module,
@@ -35,12 +37,17 @@ and module,
 
 ### VisitsLog
 
-Turns text records into a data structure used by report classes.
+Provides interface for accessing log file and processing its records.  It is used by classes which calculate visits.
+
+
+### TotalVisits
+
+Counts every visit made by an IP address to any path.  It calls VisitsLog and processes log file one line at a time.
 
 
 ### TotalVisitsReport
 
-It prints each path and number of visits to stdout in descending order.  It counts every visit made by an IP address to any path.  The count includes repeated visits.
+It prints each path and number of visits to stdout in descending order.  The count includes repeated visits.
 
 Example,
 ```
@@ -48,9 +55,14 @@ Example,
 ```
 
 
+### UniqueVists
+
+Counts unique visits, each IP address visiting a path is counted only once.  It calls VisitsLog and processes log file one line at a time.
+
+
 ### UniqueVistsReport
 
-It prints each path and number of unique visits to stdout in descending order.  It counts only unique visits that is each IP address visiting a path is counted only once.
+It prints each path and number of unique visits to stdout in descending order.
 
 Example,
 ```
