@@ -1,5 +1,4 @@
 require './can_print'
-require 'set'
 
 
 #
@@ -10,24 +9,17 @@ class UniqueVisitsReport
   include CanPrint
 
 
-  def initialize visits=[]
+  def initialize visits
     @visits = visits
-    @visit_string = 'unique views'
+    @line_suffix = 'unique views'
   end
 
 
   private
 
 
-  def visits_counts
-    init_hash = Hash.new { |h, k| h[k] = Set.new }
-
-    counts = @visits.inject(init_hash) do |counts, visit|
-      counts[visit[:path]] << visit[:ip]
-      counts
-    end
-
-    counts.map { |k, v| [k, v.length] }.sort_by { |k, v| -v }
+  def items
+    @visits.items.sort_by { |k, v| -v }
   end
 
 end

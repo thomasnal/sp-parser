@@ -1,4 +1,6 @@
-require './parser_test'
 require './visits_log_test'
+require './total_visits'
 require './total_visits_report_test'
+require './unique_visits'
 require './unique_visits_report_test'
+require './parser_test'
